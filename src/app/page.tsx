@@ -11,6 +11,8 @@ export default function Home() {
 
   useEffect(() => {
     fetchAirports();
+
+    setSearchTerm("");
   }, []);
 
   const {
