@@ -4,28 +4,28 @@ import { useEffect } from "react";
 import { fetchAirports } from "@/services/aviationstack";
 import useStore from "@/store/store";
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+  const router = useRouter();
+
   useEffect(() => {
-    // Cargar aeropuertos al montar el componente
     fetchAirports();
   }, []);
 
   const {
-    filteredAirports,
-    page,
-    pageSize,
-    totalPages,
     searchTerm,
-    error,
-    setPage,
     setSearchTerm
   } = useStore();
 
-  const handleSearch = (e: any) => {
+  const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
 
-    console.log("buscando");
+    if (searchTerm.trim()) {
+      router.push(`/airportsList?q=${encodeURIComponent(searchTerm)}`);
+    } else {
+      router.push('/airportsList');
+    }
   }
 
   return (
