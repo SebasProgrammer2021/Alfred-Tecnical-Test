@@ -24,16 +24,16 @@ export default function AirportsListPage() {
   }
 
   return (
-    <div className="container mx-auto py-10">
-      <div className='flex w-full items-center gap-[128px] justify-center mb-[63.48px]'>
-        <h1 className="text-[58.91px] lg:text-[50.46px] w-full font-black text-center bg-gradient-to-r from-[#006AFF] to-[#00F9FF] text-transparent bg-clip-text font-gotham text-nowrap">SkyConnect Explorer</h1>
-        <form onSubmit={handleSearch} className="flex gap-[70px] items-center">
+    <div className="py-10 bg-[url(/black_home.png)] bg-cover h-screen">
+      <div className='flex w-full items-center xl:gap-10 2xl:gap-[128px] justify-center sm:flex sm:flex-col xl:flex-row'>
+        <h1 className="text-[28.91px] w-full xl:text-[50.46px] xl:w-fit 2xl:w-full font-black text-center bg-gradient-to-r from-[#006AFF] to-[#00F9FF] text-transparent bg-clip-text font-gotham text-nowrap">SkyConnect Explorer</h1>
+        <form onSubmit={handleSearch} className="flex gap-10 2xl:gap-[70px] items-center sm:flex-col xl:flex-row">
           <input
             type="text"
             placeholder="Buscar aeropuertos..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full xl:w-[780px] px-4 py-4 rounded-full bg-white
+            className="w-full xl:w-[500px] 2xl:w-[780px] px-4 py-4 rounded-full bg-white
             text-[#006FEE] placeholder:text-[#006FEE] placeholder:font-normal placeholder:text-xl/[36.59px] focus:outline-none"
           />
           <button
@@ -55,7 +55,7 @@ export default function AirportsListPage() {
           {error}
         </div>
       ) : (
-        <div className="bg-white shadow-lg rounded-lg p-6">
+        <div className="p-5 xl:px-[85px] pb-[45px] pt-[63.48px]">
           <AirportsList />
         </div>
       )}

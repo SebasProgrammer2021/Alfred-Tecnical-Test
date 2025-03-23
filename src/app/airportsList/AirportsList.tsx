@@ -13,6 +13,9 @@ const AirportsList = () => {
   const startIndex = (page - 1) * pageSize;
   const displayedAirports = filteredAirports.slice(startIndex, startIndex + pageSize);
 
+  console.log("displayedAirports", displayedAirports);
+
+
   // Navegar a la página de detalles del aeropuerto
   const handleAirportClick = (airportId: string) => {
     router.push(`/airport/${airportId}`);
@@ -44,8 +47,8 @@ const AirportsList = () => {
           key={i}
           onClick={() => handlePageChange(i)}
           className={`px-3 py-1 mx-1 rounded ${page === i
-              ? "bg-blue-600 text-white"
-              : "bg-gray-200 hover:bg-gray-300"
+            ? "bg-blue-600 text-white"
+            : "bg-gray-200 hover:bg-gray-300"
             }`}
         >
           {i}
@@ -71,25 +74,22 @@ const AirportsList = () => {
   }
 
   return (
-    <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className=''>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[50px] gap-y-[45px]">
         {displayedAirports.map((airport) => (
           <div
             key={airport.id}
             onClick={() => handleAirportClick(airport.id)}
-            className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer border border-gray-200 p-4"
+            className="rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer border border-gray-200 px-[39px] py-[29px]"
           >
-            <div className="flex items-center mb-2">
-              <div className="bg-blue-100 text-blue-800 font-bold rounded p-2 mr-3">
-                {airport.iata_code || airport.icao_code || "N/A"}
-              </div>
-              <h3 className="text-lg font-semibold">{airport.name}</h3>
+            <h3 className="text-[20.52px]/[38.31px] font-bold">{airport.name}</h3>
+            <div className="mb-[35px]">
+              <p className='text-white font-normal text-[20.52px]/[38.31px]'>{airport.city || "No disponible"}, {airport.country}</p>
             </div>
-            <div className="text-sm text-gray-600">
-              <p><span className="font-medium">País:</span> {airport.country}</p>
-              <p><span className="font-medium">Ciudad:</span> {airport.city || "No disponible"}</p>
-              <p><span className="font-medium">Código IATA:</span> {airport.iata_code || "No disponible"}</p>
-              <p><span className="font-medium">Código ICAO:</span> {airport.icao_code || "No disponible"}</p>
+            <div className="flex gap-2">
+              <span className="font-gotham bg-gradient-to-r from-[#006AFF] to-[#00F9FF] text-transparent bg-clip-text font-medium text-[42.64px]/[100%]">
+                {airport.city.slice(0, 3).toUpperCase()}
+              </span>
             </div>
           </div>
         ))}
