@@ -29,8 +29,7 @@ const AirportsList = () => {
     }
   };
 
-  // Renderizar botones de paginación
-  const renderPagination = () => {
+  const renderPagesButtons = () => {
     const pages = [];
     const maxPagesToShow = 5;
 
@@ -46,7 +45,8 @@ const AirportsList = () => {
         <button
           key={i}
           onClick={() => handlePageChange(i)}
-          className={`px-3 py-1 mx-1 rounded-[9.4px] bg-blue-600 text-white font-bold text-[17.63px]/[32.9px] hover:bg-blue-700 transition-colors duration-200 cursor-pointer`}
+          className={`px-3 py-1 mx-1 rounded-[9.4px] bg-blue-600 text-white font-bold text-[17.63px]/[32.9px]
+             hover:bg-blue-700 transition-colors duration-200 cursor-pointer`}
         >
           {i}
         </button>
@@ -104,7 +104,7 @@ const AirportsList = () => {
           >
             Anterior
           </button>
-          {renderPagination()}
+          {renderPagesButtons()}
           <button
             onClick={() => handlePageChange(page + 1)}
             disabled={page === totalPages}
