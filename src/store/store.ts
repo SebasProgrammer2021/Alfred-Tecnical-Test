@@ -6,7 +6,7 @@ type Airport = {
   iata_code: string;
   icao_code: string;
   city: string;
-  city_name: string;
+  city_name?: string;
   country: string;
   timezone: string;
   latitude: number;
