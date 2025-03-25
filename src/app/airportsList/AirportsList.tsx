@@ -8,20 +8,14 @@ import Link from 'next/link';
 const AirportsList = () => {
   const router = useRouter();
   const { filteredAirports, page, pageSize, totalPages, setPage } = useStore();
-
-  // Calcular los aeropuertos a mostrar en la página actual
   const startIndex = (page - 1) * pageSize;
   const displayedAirports = filteredAirports.slice(startIndex, startIndex + pageSize);
 
-  console.log("displayedAirports", displayedAirports);
 
-
-  // Navegar a la página de detalles del aeropuerto
   const handleAirportClick = (airportId: string) => {
     router.push(`/airport/${airportId}`);
   };
 
-  // Manejar cambio de página
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {
       setPage(newPage);
@@ -71,7 +65,7 @@ const AirportsList = () => {
   }
 
   return (
-    <div className=''>
+    <div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[50px] gap-y-[45px]">
         {displayedAirports.map((airport) => (
           <div
