@@ -1,4 +1,4 @@
-import { City } from "@/services/aviationstack";
+import { City, Airport, combineAirportsWithCities } from "@/services/aviationstack";
 
 export const generateMockCities = (): City[] => {
   return [
@@ -20,15 +20,14 @@ export const generateMockCities = (): City[] => {
   ];
 };
 
-export const generateMockAirports = () => {
+export const generateMockAirports = (): Airport[] => {
   return [
     {
       id: "1",
       name: "Aeropuerto Internacional Adolfo Suárez Madrid-Barajas",
       iata_code: "MAD",
       icao_code: "LEMD",
-      city: "Madrid",
-      city_name: "Madrid",
+      city: "MAD",
       country: "España",
       timezone: "Europe/Madrid",
       latitude: 40.472222,
@@ -39,8 +38,7 @@ export const generateMockAirports = () => {
       name: "Aeropuerto de Barcelona-El Prat",
       iata_code: "BCN",
       icao_code: "LEBL",
-      city: "Barcelona",
-      city_name: "Barcelona",
+      city: "BCN",
       country: "España",
       timezone: "Europe/Madrid",
       latitude: 41.297222,
@@ -51,8 +49,7 @@ export const generateMockAirports = () => {
       name: "Aeropuerto Internacional John F. Kennedy",
       iata_code: "JFK",
       icao_code: "KJFK",
-      city: "Nueva York",
-      city_name: "Nueva York",
+      city: "JFK",
       country: "Estados Unidos",
       timezone: "America/New_York",
       latitude: 40.639722,
@@ -63,8 +60,7 @@ export const generateMockAirports = () => {
       name: "Aeropuerto de London Heathrow",
       iata_code: "LHR",
       icao_code: "EGLL",
-      city: "Londres",
-      city_name: "Londres",
+      city: "LON",
       country: "Reino Unido",
       timezone: "Europe/London",
       latitude: 51.4775,
@@ -75,8 +71,7 @@ export const generateMockAirports = () => {
       name: "Aeropuerto Internacional de Tokio (Haneda)",
       iata_code: "HND",
       icao_code: "RJTT",
-      city: "Tokio",
-      city_name: "Tokio",
+      city: "TYO",
       country: "Japón",
       timezone: "Asia/Tokyo",
       latitude: 35.553333,
@@ -87,8 +82,7 @@ export const generateMockAirports = () => {
       name: "Aeropuerto de Charles de Gaulle",
       iata_code: "CDG",
       icao_code: "LFPG",
-      city: "París",
-      city_name: "París",
+      city: "PAR",
       country: "Francia",
       timezone: "Europe/Paris",
       latitude: 49.009722,
@@ -99,8 +93,7 @@ export const generateMockAirports = () => {
       name: "Aeropuerto Internacional de Los Ángeles",
       iata_code: "LAX",
       icao_code: "KLAX",
-      city: "Los Ángeles",
-      city_name: "Los Ángeles",
+      city: "LAX",
       country: "Estados Unidos",
       timezone: "America/Los_Angeles",
       latitude: 33.9425,
@@ -111,8 +104,7 @@ export const generateMockAirports = () => {
       name: "Aeropuerto Internacional de Dubái",
       iata_code: "DXB",
       icao_code: "OMDB",
-      city: "Dubái",
-      city_name: "Dubái",
+      city: "DXB",
       country: "Emiratos Árabes Unidos",
       timezone: "Asia/Dubai",
       latitude: 25.252778,
@@ -123,8 +115,7 @@ export const generateMockAirports = () => {
       name: "Aeropuerto de Frankfurt",
       iata_code: "FRA",
       icao_code: "EDDF",
-      city: "Frankfurt",
-      city_name: "Frankfurt",
+      city: "FRA",
       country: "Alemania",
       timezone: "Europe/Berlin",
       latitude: 50.033333,
@@ -135,8 +126,7 @@ export const generateMockAirports = () => {
       name: "Aeropuerto Internacional de Hong Kong",
       iata_code: "HKG",
       icao_code: "VHHH",
-      city: "Hong Kong",
-      city_name: "Hong Kong",
+      city: "HKG",
       country: "China",
       timezone: "Asia/Hong_Kong",
       latitude: 22.308889,
@@ -147,8 +137,7 @@ export const generateMockAirports = () => {
       name: "Aeropuerto Internacional de Singapur Changi",
       iata_code: "SIN",
       icao_code: "WSSS",
-      city: "Singapur",
-      city_name: "Singapur",
+      city: "SIN",
       country: "Singapur",
       timezone: "Asia/Singapore",
       latitude: 1.359167,
@@ -159,8 +148,7 @@ export const generateMockAirports = () => {
       name: "Aeropuerto Internacional de Ámsterdam Schiphol",
       iata_code: "AMS",
       icao_code: "EHAM",
-      city: "Ámsterdam",
-      city_name: "Ámsterdam",
+      city: "AMS",
       country: "Países Bajos",
       timezone: "Europe/Amsterdam",
       latitude: 52.308056,
@@ -171,8 +159,7 @@ export const generateMockAirports = () => {
       name: "Aeropuerto Internacional de Sídney",
       iata_code: "SYD",
       icao_code: "YSSY",
-      city: "Sídney",
-      city_name: "Sídney",
+      city: "SYD",
       country: "Australia",
       timezone: "Australia/Sydney",
       latitude: -33.946111,
@@ -183,8 +170,7 @@ export const generateMockAirports = () => {
       name: "Aeropuerto Internacional de Toronto Pearson",
       iata_code: "YYZ",
       icao_code: "CYYZ",
-      city: "Toronto",
-      city_name: "Toronto",
+      city: "YYZ",
       country: "Canadá",
       timezone: "America/Toronto",
       latitude: 43.677222,
@@ -195,12 +181,27 @@ export const generateMockAirports = () => {
       name: "Aeropuerto de Lisboa Portela",
       iata_code: "LIS",
       icao_code: "LPPT",
-      city: "Lisboa",
-      city_name: "Lisboa",
+      city: "LIS",
       country: "Portugal",
       timezone: "Europe/Lisbon",
       latitude: 38.774167,
       longitude: -9.134167
     }
   ];
+};
+
+export const fetchMockedData = async (): Promise<Airport[]> => {
+  try {
+    const mockAirports = generateMockAirports();
+    const mockCities = generateMockCities();
+
+    const airportsWithCities = combineAirportsWithCities(mockAirports, mockCities);
+
+    await new Promise(resolve => setTimeout(resolve, 800));
+
+    return airportsWithCities;
+  } catch (error) {
+    console.error("Error combinando datos mockeados:", error);
+    throw error;
+  }
 };
