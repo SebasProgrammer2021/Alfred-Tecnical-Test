@@ -46,10 +46,7 @@ const AirportsList = () => {
         <button
           key={i}
           onClick={() => handlePageChange(i)}
-          className={`px-3 py-1 mx-1 rounded ${page === i
-            ? "bg-blue-600 text-white"
-            : "bg-gray-200 hover:bg-gray-300"
-            }`}
+          className={`px-3 py-1 mx-1 rounded-[9.4px] bg-blue-600 text-white font-bold text-[17.63px]/[32.9px] hover:bg-blue-700 transition-colors duration-200 cursor-pointer`}
         >
           {i}
         </button>
@@ -84,7 +81,9 @@ const AirportsList = () => {
           >
             <h3 className="text-[20.52px]/[38.31px] font-bold">{airport.name}</h3>
             <div className="mb-[35px]">
-              <p className='text-white font-normal text-[20.52px]/[38.31px]'>{airport.city || "No disponible"}, {airport.country}</p>
+              <p className='text-white font-normal text-[20.52px]/[38.31px]'>
+                {airport.city_name || "No disponible"}, {airport.country || "No disponible"}
+              </p>
             </div>
             <div className="flex gap-2">
               <span className="font-gotham bg-gradient-to-r from-[#006AFF] to-[#00F9FF] text-transparent bg-clip-text font-medium text-[42.64px]/[100%]">
@@ -95,39 +94,27 @@ const AirportsList = () => {
         ))}
       </div>
 
-      {/* Paginación */}
       {totalPages > 1 && (
         <div className="flex justify-center mt-8">
           <button
             onClick={() => handlePageChange(page - 1)}
             disabled={page === 1}
-            className={`px-3 py-1 mx-1 rounded ${page === 1 ? "bg-gray-100 text-gray-400" : "bg-gray-200 hover:bg-gray-300"
+            className={`px-3 py-1 mx-1 rounded-[9.4px] ${page === 1 ? "bg-[#0060FF] text-white font-bold text-[17.63px]/[32.9px] hover:bg-[#0060FF] transition-colors duration-200 cursor-not-allowed" : "bg-[#0060FF] hover:bg-blue-700 text-white font-bold text-[17.63px]/[32.9px] cursor-pointer"
               }`}
           >
-            &lt;
+            Anterior
           </button>
-
           {renderPagination()}
-
           <button
             onClick={() => handlePageChange(page + 1)}
             disabled={page === totalPages}
-            className={`px-3 py-1 mx-1 rounded ${page === totalPages ? "bg-gray-100 text-gray-400" : "bg-gray-200 hover:bg-gray-300"
+            className={`px-3 py-1 mx-1 rounded-[9.4px] ${page === totalPages ? "bg-[#0060FF] text-white font-bold text-[17.63px]/[32.9px] hover:bg-blue-700 transition-colors duration-200 cursor-not-allowed" : "bg-[#0060FF] text-white font-bold text-[17.63px]/[32.9px] hover:bg-blue-700 transition-colors duration-200 cursor-pointer"
               }`}
           >
-            &gt;
+            Siguiente
           </button>
         </div>
       )}
-
-      <div className="text-center mt-6">
-        <Link
-          href="/"
-          className="text-blue-600 hover:text-blue-800 underline"
-        >
-          Volver a la búsqueda
-        </Link>
-      </div>
     </div>
   );
 };
