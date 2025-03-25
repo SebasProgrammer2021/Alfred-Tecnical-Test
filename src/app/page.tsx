@@ -1,26 +1,21 @@
 "use client"
 
 import React, { useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
 import AirportsList from './airportsList/AirportsList';
 import useStore from '@/store/store';
 import { fetchAirports } from '@/services/aviationstack';
 import Image from 'next/image';
 
 export default function AirportsListPage() {
-  const searchParams = useSearchParams();
-  const { searchTerm, setSearchTerm, filteredAirports, isLoading, error } = useStore();
+  const { searchTerm, setSearchTerm, isLoading, error } = useStore();
 
   useEffect(() => {
     fetchAirports();
-
     setSearchTerm("");
   }, []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-
-    console.log(searchTerm);
   }
 
   return (
